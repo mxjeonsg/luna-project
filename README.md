@@ -1,4 +1,4 @@
-## Crawl
+## Luna Project (codenamed "Crawl")
 The social media where you cry for attention.
 
 ## Wtf? Why the name?
@@ -10,6 +10,14 @@ well.
 
 ## So, you think you're making a Twitter killer?
 Nah, more like a time killer.
+Elaborating further: Watching the current Twitter state, it's
+users (basically Twitter is mostly the dumpster where all
+the stupidest people on Earth commune together to leave the Earth
+with a reminder to the upcoming generations that stupid brainless
+with (higher than needer or lesser than needed) cromosome count
+existed forever.)
+So I want to make a Social Network I'd like to use when I feel like
+using Social Networks.
 
 ## What technologies you used here?
 - For the backend:
