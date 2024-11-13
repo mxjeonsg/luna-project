@@ -29,7 +29,9 @@ using Social Networks.
   * Lua
 
 ## What are the plans for this software towards the future?
-As of Tuesday, October 1st 2024 concerns, the planes are:
+As of Tuesday, November 12th 2024 concerns, the planes are:
+- Create the logo. lmao
+- Create an actual page. (The current in [frontend](src/frontend) is provisional.)
 - Adding secondary functionability in Lua
 - Add image/video/gif support
   - Use Face(R) bruh(TM) compression method
@@ -37,3 +39,12 @@ As of Tuesday, October 1st 2024 concerns, the planes are:
 - Move the web frontend UI to React/Tailwind instead of Vanilla.
   - I don't like neither, I prefer the vanilla way, but if I want to
     eat from the IT industry, I might learn all that crap.
+
+## How to build?
+- Dependencies:
+  * Just a Linux/Unix distro. (I use FreeBSD)
+  * Not more at the moment (maybe sqlite in the next update)
+
+- But how to run?
+  * ```make```
+  * That's it.
