@@ -1,9 +1,27 @@
 #include <stdio.h>
 
+#include "../common/app_details.h"
+#include "../common/extra_request_headers.h"
+
 #include "../common/socket.c"
 
+#include "../common/http_headers.c"
+
 int main() {
-    const icstr source = "HTTP/1.1 200 Ok\r\nContent-Type: text/html\r\n\r\n<marquee>Sexo</marquee>";
+    const icstr source = "<marquee>Sexo</marquee>";
+    const usize res_len = 256000;
+
+    i8 response[res_len];
+
+    const HttpHeader rs_hea = {
+        .code = 200,
+        .code_str = "Ok",
+        .headers = "Content-Type: text/html",
+        .content = source
+    };
+    prependResponseHeaderToContent_NA(response, res_len, &rs_hea);
+
+
     SocketDescr server = SocketDescriptor_new_srv(8080);
 
     while(server->listening) {
@@ -25,4 +43,5 @@ int main() {
     }
 
     SocketDescriptor_delete(server);
+    // free(response);
 }
