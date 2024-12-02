@@ -1,0 +1,29 @@
+body {
+    background: linear-gradient(0.15turn, #4b0082, #6a0dad);
+}
+
+.toolbar-section {
+    display: flex;
+}
+
+.feed-section {
+    display: flex;
+
+    color: #3b007f;
+}
+
+.end-section {
+    display: flex;
+}
+
+.toolbar-search {
+    padding: auto;
+}
+
+.feed-post-post {
+    
+}
+
+.feed-post-post p {
+    color: aliceblue;
+}

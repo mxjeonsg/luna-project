@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="by">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Login</title>
+
+        <link rel="stylesheet" href="http://localhost:6069/assets/static/css/login.css">
+    </head>
+    <body>
+        <div class="login-container">
+            <h1>Login</h1>
+            <form id="login-form" name="login-form" class="login-form">
+                <label for="display-name">Display name:</label>
+                <input type="text" id="display-name" name="display-name" placeholder="Put some name, like <Sean John Combs>.">
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Your nice handle, like <@pdiddy>">
+
+                <label for="birth-year">Birth Year:</label>
+                <input required type="number" name="birth-year" id="birth-year" min=1900 max=2024>
+
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="" disabled selected>Select the shithole you come from:</option>
+                    <option value="" disabled>-- North America --</option>
+                    <option value="ca">Canada</option>
+                    <option value="mx">Mexico, United Mexican States</option>
+                    <option value="us">United States of America</option>
+                    
+                    <option value="" disabled>-- Centre America --</option>
+                    <option value="bz">Belize</option>
+                    <option value="cr">Costa Rica, Republic of</option>
+                    <option value="sv">El Salvador, Republic of</option>
+                    <option value="gt">Guatemala, Republic of</option>
+                    <option value="hn">Honduras, Republic of</option>
+                    <option value="ni">Nicaragua, Republic of</option>
+                    <option value="pa">Panama, Republic of</option>
+
+                    <option value="" disabled>-- Caribbean --</option>
+                    <option value="ag">Antigua and Barbuda</option>
+                    <option value="bs">Bahamas, Commonwealth of The</option>
+                    <option value="bb">Barbados</option>
+                    <option value="cu">Cuba, Republic of</option>
+                    <option value="dm">Dominica, Commonwealth of</option>
+                    <option value="do">Dominican Republic</option>
+                    <option value="gd">Grenada</option>
+                    <option value="ht">Haiti, Republic of</option>
+                    <option value="jm">Jamaica</option>
+                    <option value="kn">Saint Kitts and Nevis, Federation of</option>
+                    <option value="lc">Saint Lucia</option>
+                    <option value="vc">Saint Vincent and the Grenadines</option>
+                    <option value="tt">Trinidad and Tobago, Republic of</option>
+                    
+                    <option value="" disabled>-- South America --</option>
+                    <option value="ar">Argentine Republic</option>
+                    <option value="bo">Bolivia, Plurinational State of</option>
+                    <option value="br">Brazil, Federative Republic of</option>
+                    <option value="cl">Chile, Republic of</option>
+                    <option value="co">Colombia, Republic of</option>
+                    <option value="ec">Ecuador, Republic of</option>
+                    <option value="gy">Guyana, Cooperative Republic of</option>
+                    <option value="py">Paraguay, Republic of</option>
+                    <option value="pe">Peru, Republic of</option>
+                    <option value="sr">Suriname, Republic of</option>
+                    <option value="uy">Uruguay, Oriental Republic of</option>
+                    <option value="ve">Venezuela, Bolivarian Republic of</option>
+
+                    <option value="" disabled>-- Antarctica --</option>
+                    <option value="aq">Antarctic Treaty</option>
+
+                    <option value="" disabled>-- Europe --</option>
+                    <option value="" disabled>-- Eastern Europe --</option>
+                    <option value="by">Belarus, Republic of</option>
+                    <option value="bg">Bulgaria, Republic of</option>
+                    <option value="cz">Czech Republic</option>
+                    <option value="hu">Hungary</option>
+                    <option value="md">Moldova, Republic of</option>
+                    <option value="pl">Poland, Republic of</option>
+                    <option value="ro">Romania</option>
+                    <option value="ru">Russian Federation</option>
+                    <option value="sk">Slovak Republic</option>
+                    <option value="ua">Ukraine</option>
+                    
+                    <option value="" disabled>-- Northern Europe --</option>
+                    <option value="dk">Denmark, Kingdom of</option>
+                    <option value="ee">Estonia, Republic of</option>
+                    <option value="fi">Finland, Republic of</option>
+                    <option value="is">Iceland, Republic of</option>
+                    <option value="ie">Ireland</option>
+                    <option value="lv">Latvia, Republic of</option>
+                    <option value="lt">Lithuania, Republic of</option>
+                    <option value="no">Norway, Kingdom of</option>
+                    <option value="se">Sweden, Kingdom of</option>
+                    <option value="uk">United Kingdom of Great Britain and Northern Ireland</option>
+                    
+                    <option value="" disabled>-- Southern Europe --</option>
+                    <option value="al">Albania, Republic of</option>
+                    <option value="ad">Andorra, Principality of</option>
+                    <option value="ba">Bosnia and Herzegovina</option>
+                    <option value="hr">Croatia, Republic or</option>
+                    <option value="gr">Greece, Hellenic Republic</option>
+                    <option value="it">Italian Republic</option>
+                    <option value="mt">Malta, Republic of</option>
+                    <option value="me">Montenegro</option>
+                    <option value="mk">North Macedonia, Republic of</option>
+                    <option value="pt">Portuguese Republic</option>
+                    <option value="sm">San Marino, Republic of</option>
+                    <option value="rs">Serbia, Republic of</option>
+                    <option value="si">Slovenia, Republic of</option>
+                    <option value="es">Spain, Kingdom of</option>
+                    <option value="va">Vatican City State</option>
+
+                    <option value="" disabled>-- Western Europe --</option>
+                    <option value="at">Austria, Republic of</option>
+                    <option value="be">Belgium, Kingdom of</option>
+                    <option value="fr">French Republic</option>
+                    <option value="de">Germany, Federal Republic of</option>
+                    <option value="li">Liechtenstein, Principality of</option>
+                    <option value="lu">Luxembourg, Grand Duchy of</option>
+                    <option value="mc">Monaco, Principality of</option>
+                    <option value="nl">Netherlands, Kingdom of the</option>
+                    <option value="ch">Swiss Confederation</option>
+
+                    <option value="" disabled>-- Africa--</option>
+                    <option value="" disabled>-- Northern Africa --</option>
+                    <option value="dz">Algeria, People's Democratic Republic of</option>
+                    <option value="eg">Egypt, Arab Republic of</option>
+                    <option value="ly">Libya, State of</option>
+                    <option value="ma">Morocco, Kingdom of</option>
+                    <option value="sd">Sudan, Republic of</option>
+                    <option value="tn">Tunisia, Republic of</option>
+
+                    <option value="" disabled>-- Western Africa --</option>
+                    <option value="bj">Benin, Republic of</option>
+                    <option value="bf">Burkina Faso</option>
+                    <option value="cv">Cabo Verde, Republic of</option>
+                    <option value="ci">Ivory Coast, Republic of</option>
+                    <option value="gm">Gambia, Republic of The</option>
+                    <option value="gh">Ghana, Republic of</option>
+                    <option value="gn">Guinea, Republic of</option>
+                    <option value="gw">Guinea-Bissau, Republic of</option>
+                    <option value="lr">Liberia, Republic of</option>
+                    <option value="ml">Mali, Republic of</option>
+                    <option value="mr">Mauritania, Islamic Republic of</option>
+                    <option value="ne">Niger, Republic of the</option>
+                    <option value="ng">Nigeria, Federal Republic of</option>
+                    <option value="sn">Senegal, Republic of</option>
+                    <option value="sl">Sierra Leone, Republic of</option>
+                    <option value="tg">Togolese Republic</option>
+
+                    <option value="" disabled>-- Central Africa --</option>
+                    <option value="ao">Angola, Republic of</option>
+                    <option value="cm">Cameroon, Republic of</option>
+                    <option value="cf">Central African Republic</option>
+                    <option value="td">Chad, Republic of</option>
+                    <option value="cg">Congo, Republic of</option>
+                    <option value="cd">Congo, Democratic Republic of the</option>
+                    <option value="gq">Equatorial Guinea</option>
+                    <option value="ga">Gabonese Republic</option>
+                    <option value="st">Sao Tomé and Príncipe, Democratic Republic of</option>
+
+                    <option value="" disabled>-- Eastern Africa --</option>
+                    <option value="bi">Burundi, Republic of</option>
+                    <option value="km">Comoros, Republic of</option>
+                    <option value="dj">Djibouti, Republic of</option>
+                    <option value="er">Eritrea, State of</option>
+                    <option value="et">Ethiopia, Federal Democratic Republic of</option>
+                    <option value="ke">Kenya, Republic of</option>
+                    <option value="mg">Madagascar, Republic of</option>
+                    <option value="mw">Malawi, Republic of</option>
+                    <option value="mu">Mauritus, Republic of</option>
+                    <option value="mz">Mozambique, Republic of</option>
+                    <option value="rw">Rwanda, Republic of</option>
+                    <option value="sc">Seychelles, Republic of</option>
+                    <option value="so">Somalia, Republic of</option>
+                    <option value="ss">South Sudan, Republic of</option>
+                    <option value="tz">Tanzania, Republic of</option>
+                    <option value="ug">Uganda, Republic of</option>
+                    <option value="zm">Zambia, Republic of</option>
+                    <option value="zw">Zimbabwe, Republic of</option>
+
+                    <option value="" disabled>-- Southern Africa --</option>
+                    <option value="bw">Botswana, Republic of</option>
+                    <option value="sz">Eswatini, Kingdom of</option>
+                    <option value="ls">Lesotho, Kingdom of</option>
+                    <option value="na">Namibia, Republic of</option>
+                    <option value="za">South Africa, Republic of</option>
+                    
+
+                    <option value="" disabled>-- Oceania --</option>
+                    <option value="au">Australia, Commonwealth of</option>
+                    <option value="nz">New Zealand</option>
+
+                    <option value="" disabled>-- Melanesia --</option>
+                    <option value="fj">Fiji, Republic of</option>
+                    <option value="pg">Papua New Guinea, Independent State of</option>
+                    <option value="sb">Solomon Islands</option>
+                    <option value="vu">Vanuatu, Republic of</option>
+                    
+                    <option value="" disabled>-- Micronesia --</option>
+                    <option value="ki">Kiribati, Republic of</option>
+                    <option value="mh">Marshall Islands, Republic of the</option>
+                    <option value="fm">Micronesia, Federated States of</option>
+                    <option value="nr">Nauru, Republic of</option>
+                    <option value="pw">Palau, Republic of</option>
+                    
+                    <option value="" disabled>-- Polynesia --</option>
+                    <option value="ws">Samoa, Independent State of</option>
+                    <option value="to">Tonga, Kingdom of</option>
+                    <option value="tv">Tuvalu</option>
+                    
+
+
+                    <option value="" disabled>-- Asia --</option>
+                    <option value="" disabled>-- Eastern Asia --</option>
+                    <option value="cn">China, Reople's Republic of</option>
+                    <option value="jp">Japan</option>
+                    <option value="mn">Mongolia</option>
+                    <option value="kp">North Korea, Democratic People's Republic of</option>
+                    <option value="kr">South Korea, Republic of</option>
+                    <option value="tw">Taiwan, Republic of China</option>
+
+                    <option value="" disabled>-- Southeastern Asia --</option>
+                    <option value="kh">Cambodia, Kingdom of</option>
+                    <option value="id">Indonesia, Republic of</option>
+                    <option value="la">Laos, People's Democratic Republic of</option>
+                    <option value="my">Malaysia</option>
+                    <option value="mm">Myanmar, Republic of the Union of</option>
+                    <option value="ph">Philippines, Republic of the</option>
+                    <option value="sg">Singapore, Republic of</option>
+                    <option value="th">Thailand, Kingdom of</option>
+                    <option value="tl">Timor-Leste, Democratic Republic of</option>
+                    <option value="vn">Vietnam, Socialist Republic of</option>
+
+                    <option value="" disabled>-- Southern Asia --</option>
+                    <option value="af">Afghanistan, Islamic Republic of</option>
+                    <option value="bd">Bangladesh, People's Republic of</option>
+                    <option value="bt">Bhutan, Kingdom of</option>
+                    <option value="in">India, Republic of</option>
+                    <option value="mv">Maldives, Republic of</option>
+                    <option value="np">Nepal, Federal Democratic Republic of</option>
+                    <option value="pk">Pakistan, Islamic Republic of</option>
+                    <option value="lk">Sri Lanka, Democratic Socialist Republic of</option>
+
+                    <option value="" disabled>-- Central Asia --</option>
+                    <option value="kz">Kazakhstan, Republic of</option>
+                    <option value="kg">Kyrgyz Republic</option>
+                    <option value="tj">Tajikistan, Republic of</option>
+                    <option value="tm">Turkmenistan</option>
+                    <option value="uz">Uzbekistan, Republic of</option>
+
+                    <option value="" disabled>Western Asia (Middle East)</option>
+                    <option value="am">Armenia, Republic of</option>
+                    <option value="az">Azerbaijan, Republic of</option>
+                    <option value="bh">Bahrain, Kingdom of</option>
+                    <option value="cy">Cyprus, Republic of</option>
+                    <option value="ge">Georgia</option>
+                    <option value="ir">Iran, Islamic Republic of</option>
+                    <option value="iq">Iraq, Republic of</option>
+                    <option value="il">Israel, State of</option>
+                    <option value="jo">Jordan, Hashemite Kingdom of</option>
+                    <option value="kw">Kuwait, State of</option>
+                    <option value="lb">Lebanese Republic</option>
+                    <option value="om">Oman, Sultanate of</option>
+                    <option value="ps">Palestine, State of</option>
+                    <option value="qa">Qatar, State of</option>
+                    <option value="sa">Saudi Arabia, Kingdom of</option>
+                    <option value="sy">Syrian Arab Republic</option>
+                    <option value="tr">Turkiye, Republic of</option>
+                    <option value="ae">United Arab Emirates</option>
+                    <option value="ye">Yemen, Republic of</option>
+                </select>
+
+                <label for="language">Interface language:</label>
+                <select id="language" name="language" required>
+                    <option value="ln-en">English (English - Australia)</option>
+                    <option value="ln-en">Spanish (Español - México)</option>
+                    <option value="ln-en">Russian (Русский - Российская Федерация)</option>
+                    <option value="ln-en">Ukrainian (Українська - Україна)</option>
+                </select>
+
+                <label for="extra-text">Biography:</label>
+                <textarea id="extra-text" name="extra-text" placeholder="Andrew Tate god (no)" maxlength=2500></textarea>
+
+                <button type="submit">Take my data!</button>
+            </form>
+            <p id="form-result" class="form-result"></p>
+        </div>
+        <script src="http://localhost:6069/assets/static/js/login.js"></script>
+    </body>
+</html>
