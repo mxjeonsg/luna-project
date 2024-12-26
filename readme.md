@@ -11,6 +11,13 @@ clang -o nob nob.c
 ## anytime you need to rebuild.
 ./nob
 
+## You might want to generate
+## the needed certificates:
+./nob --gen-certs
+
 ## And if you want to run, do:
 ./nob --run
+
+## And if you get lost, do:
+./nob --help
 ```
