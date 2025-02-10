@@ -1,81 +1,122 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using Luna.Framework.Bindings;
 
 namespace Luna.Framework;
 
-// This enum denotes the kind of labour the
-// `Socket` instance serves.
+/// <summary>
+/// This enum holds the kinds of
+/// labours the Socket could serve
+/// for.
+/// </summary>
 public enum SocketRole {
     None,
     Server = 6, Client = 9,
     Gateway = 8
 }
 
-// This class serves as representant of a connection.
+/// <summary>
+/// This class servers as representant of a connection.
+/// </summary>
 public class Socket {
-    // Kind of connection the socket identifies.
+    /// <summary>
+    /// Kind of connection the socket identifies.
+    /// </summary>
     private SocketRole role = SocketRole.None;
 
-    // Windows' winsock preinit bullshit.
+    /// <summary>
+    /// Windows' Winsock preinit bullshit.
+    /// </summary>
     private WSAData wsaData = new WSAData();
 
-    // The socket descriptor.
+    /// <summary>
+    /// The socket descriptor.
+    /// </summary>
     private ushort descriptor = 0;
 
-    // Information about the connection.
+    /// <summary>
+    /// Information structure about the connection.
+    /// </summary>
     private sockaddr_in sockaddr = new sockaddr_in();
 
-    // The port the connection works under.
+    /// <summary>
+    /// The port the connection works under.
+    /// </summary>
     private ushort port = 6069;
 
-    // How much bytes were sent/received over the connection.
+    /// <summary>
+    /// How much bytes were sent/received over the connection.
+    /// </summary>
     private ulong recvBytes = 0, sentBytes = 0;
 
     // FIXME: this doesn't feel right.
-    private int addrlen = 16;
+    /// <summary>
+    /// The size of the address information structure.
+    /// </summary>
+    private int addrlen = Marshal.SizeOf<sockaddr_in>();
 
-    // Tracking for connection status.
+    /// <summary>
+    /// Tracking for connection status.
+    /// </summary>
     private bool working = false;
 
-    // Reading access to the connection port.
+    /// <summary>
+    /// Reading access to the connection port.
+    /// </summary>
     public ushort Port {
         get { return this.port; }
     }
 
-    // Reading access to the connection role.
+    /// <summary>
+    /// Reading access to the connection role.
+    /// </summary>
     public SocketRole Role {
         get { return this.role; }
     }
 
-    // Reading access to the connection information.
+    /// <summary>
+    /// Reading access to the connection information.
+    /// </summary>
     public sockaddr_in SockAddr {
         get { return this.sockaddr; }
     }
 
-    // Reading access to how much data was readed through.
+    /// <summary>
+    /// Reading access to how much data was readed through.
+    /// </summary>
     public ulong RecvBytes {
         get { return this.recvBytes; }
     }
 
-    // Reading access to how much data was written through.
+    /// <summary>
+    /// Reading access to how much data was written thourgh.
+    /// </summary>
     public ulong SentBytes {
         get { return this.sentBytes; }
     }
 
-    // Reading access to the socket descriptor.
+    /// <summary>
+    /// Reading access to the socket descriptor.
+    /// </summary>
     public ushort Descriptor {
         get { return this.descriptor; }
     }
 
-    // Reading access to the connection state.
+    /// <summary>
+    /// Reading access to the connection state.
+    /// </summary>
     public bool Working {
         get { return this.working; }
     }
 
-    // Main constructor for the `Socket` object.
-    // It creates a object representing a Server listener socket.
-    // Its role is `SocketRole.Server`.
+    /// <summary>
+    /// Main constructor for the `Socket` object.
+    /// It creates an object representing a Server listener socket.
+    /// Its role is `SocketRole.Server`.
+    /// </summary>
+    /// <param name="port">The port the server will work over.</param>
+    /// <exception cref="Exception">The constructor could throw because a WSAStartup call failed.</exception>
     public Socket(ushort port) {
         if(Winsock.WSAStartup(0x202, ref wsaData) != 0) {
             throw new Exception("WSAStartup failed");
@@ -109,9 +150,12 @@ public class Socket {
         this.working = true;
     }
 
-    // Secondary constructor for the `Socket` object.
-    // It represents an accepting client socket.
-    // Its role is `SocketRole.Client`.
+    /// <summary>
+    /// Secondary constructor for the `Socket` class.
+    /// It represents an accepting client socket.
+    /// Its role is `SocketRole.Client`.
+    /// </summary>
+    /// <param name="srv">The server socket instance the client instance will work for.</param>
     public Socket(Socket srv) {
         this.role = SocketRole.Client;
 
@@ -124,9 +168,14 @@ public class Socket {
         this.working = true;
     }
 
-    // Secondary and third constructor for the `Socket` object.
-    // It represents a gateway socket.
-    // Its role is `SocketRole.Gateway`
+    /// <summary>
+    /// Third constructor for the `Socket` object.
+    /// It represents a gateway socket.
+    /// Its role is `SocketRole.Gateway`.
+    /// </summary>
+    /// <param name="srv"></param>
+    /// <param name="port"></param>
+    /// <param name="address"></param>
     public Socket(Socket srv, ushort port, string address) {
         this.role = SocketRole.Gateway;
 
@@ -151,10 +200,12 @@ public class Socket {
         }
     }
 
-    // Socket destructor.
-    // It shutdowns the socket work, trying to write
-    // everything in queue to be written, dropping further read/write
-    // capabilities and closing the socket.
+    /// <summary>
+    /// Socket destructor.
+    /// It shutdowns the socket work, trying to write
+    /// everything in queue to be written, dropping further read/write
+    /// capabilities and closing the socket.
+    /// </summary>
     public void close() {
         if(this.descriptor != 0) {
             Winsock.shutdown(this.descriptor, 2);
@@ -166,18 +217,19 @@ public class Socket {
         }
     }
 
-    // Official desctructor method.
-    // Its bound to the public `Socket.close` method.
+    /// <summary>
+    /// Official destructor method.
+    /// It's bound to the public `Socket.close` method.
+    /// </summary>
     ~Socket()
     => this.close();
 
-    // This method performs write operations to the underlying socket.
-    //
-    // Parametres:
-    // - `byte[]` data: the data to be written.
-    //
-    // Returns:
-    // (ulong): The ammount of bytes written.
+    /// <summary>
+    /// This method performs write operations to the underlying socket.
+    /// </summary>
+    /// <param name="data">the data buffer to be written</param>
+    /// <returns>The ammount of bytes that ended up written.</returns>
+    /// <exception cref="Exception">Throws if the data couldn't be sent. In both "sent = 0" or a failed call to send().</exception>
     public ulong writeRaw(byte[] data) {
         long sent = 0;
 
@@ -194,15 +246,20 @@ public class Socket {
         return (ulong) sent;
     }
 
-    // This method performs reading operations to the underlying socket.
-    // If **-1** is passed to the method, it attempts to read eveything
-    // that's available to read.
-    //
-    // Parametres:
-    // - `int` len: The ammount of bytes to read from the socket.
-    //
-    // Returns:
-    // (byte[]): The data readed from the socket.
+    /// <summary>
+    /// This method performs reading operations to the underlying socket.
+    /// 
+    /// A buffer of total size `len` is allocated first, if the data
+    /// size is less than the provided parametre, the buffer is further
+    /// shortened to avoid keeping allocated more memory than used.
+    /// (Even in managed garbage-collected langs. Let it sink in.)
+    /// 
+    /// If **-1** is passed to the method, it attempts to read everything
+    /// that's available to read.
+    /// </summary>
+    /// <param name="len">The ammount of bytes to read from the socket.</param>
+    /// <returns>The data readed from the socket.</returns>
+    /// <exception cref="Exception">Throws if the data couldn't be read. In both "recv = 0" or a failed call to recv().</exception>
     public byte[] readRaw(int len) {
         byte[] data = new byte[len];
         long recv = 0;
@@ -214,15 +271,45 @@ public class Socket {
             }
         }
 
+        // In cases where the received data bytes count
+        // are less than the limit (~56MB), the array is reduced
+        // so the program doesn't end up consuming RAM like
+        // Firefox does.
+        //
+        // Kinda funny, because Chrome/Chromium had the stereotype
+        // of thirsty, but not so much anymore, Firefox overtook it.
+        if(recv < len)
+            Array.Resize<byte>(ref data, (int) recv);
+
         this.recvBytes += (ulong) recv;
+        Console.WriteLine("--------------------");
+        Console.WriteLine("Received: " + Encoding.ASCII.GetString(data));
+        Console.WriteLine("--------------------\n");
         return data;
     }
 
+    /// <summary>
+    /// This method is the high level version of `Socket.readRaw()`.
+    /// Under it performs the lower lever version, returning
+    /// a `ComposeBuffer` object that can allow easier operations
+    /// on the received data.
+    /// 
+    /// Essentially, this is the method lazy ahh devs should use.
+    /// If you like it <i>low</i>, use `Socket.readRaw()` instead.
+    /// </summary>
+    /// <param name="len">The ammount of data that's expected to receive.</param>
+    /// <returns>The buffer with the expected data inside.</returns>
     public ComposeBuffer read(int len) {
         byte[] data = this.readRaw(len);
         return new ComposeBuffer(data.Length, data);
     }
 
+    /// <summary>
+    /// The lazier high level counterpart of `Socket.writeRaw()`.
+    /// It performs the normal write opperations to the inner socket, but
+    /// writing whatever is inside the `data` parametre.
+    /// </summary>
+    /// <param name="data">The data to be written inside the socket.</param>
     public void write(ComposeBuffer data) {
         this.writeRaw(data.asBytes((int) data.Length));
     }

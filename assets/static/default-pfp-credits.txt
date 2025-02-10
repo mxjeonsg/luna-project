@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/face-hh/lyntr/refs/heads/master/static/default.png

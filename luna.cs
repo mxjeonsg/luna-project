@@ -4,20 +4,53 @@ using System.Text;
 
 using Luna.Framework;
 
-
 static class UwU {
+    public static readonly string headers =
+        "X-Luna-Server-As: gateway\r\n"
+        + "X-Luna-Server-Codename: arya\r\n"
+        + "X-Luna-Server-Version: 0.4.69.4\r\n"
+        + "X-Luna-Server-OriginalPort: 6069"
+    ;
+    /// <summary>
+    ///  This static function makes out the API routing
+    ///  of the server at the frontend side.
+    /// </summary>
+    /// <param name="conn">The client socket instance</param>
+    /// <param name="req">The request object</param>
     public static void dispatchContent(Socket conn, HttpRequest req) {
-        Console.WriteLine("Request: " + req.StringBuffer);
-
         if(req.Url == "/" || req.Url == "/home" || req.Url == "/index") {
-            conn.write(new ComposeBuffer(-1, "HTTP/1.1 200 Ok\r\nContent-Type: text/html\r\n\r\n"));
-            conn.write(new ComposeBuffer(-1, File.ReadAllText("../../../html/feed.htm")));
+            string html = File.ReadAllText("../../../html/feed.htm");
+
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/html\r\n"
+                + "Content-Length: " + html.Length
+                + UwU.headers
+                + "\r\n\r\n"
+                + html
+            ));
         } else if(req.Url == "/pwease_resources/styles/main.uwu") {
-            conn.write(new ComposeBuffer(-1, "HTTP/1.1 200 Ok\r\nContent-Type: text/css\r\n\r\n"));
-            conn.write(new ComposeBuffer(-1, File.ReadAllText("../../../css/main.css")));
+            string css = File.ReadAllText("../../../css/main.css");
+
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/css\r\n"
+                + "Content-Length: " + css.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + css
+            ));
         } else if(req.Url == "/pwease_resources/styles/feed.uwu") {
-            conn.write(new ComposeBuffer(-1, "HTTP/1.1 200 Ok\r\nContent-Type: text/css\r\n\r\n"));
-            conn.write(new ComposeBuffer(-1, File.ReadAllText("../../../css/feed.css")));
+            string css = File.ReadAllText("../../../css/feed.css");
+
+            conn.write(new ComposeBuffer(-1, 
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/css\r\n"
+                + "Content-Length: " + css.Length
+                + UwU.headers
+                + "\r\n\r\n"
+                + css
+            ));
         } else if(req.Url == "/api/random_fact") {
             const string fact =
                 "{\n" +
@@ -25,41 +58,94 @@ static class UwU {
                 "}"
             ;
 
-            conn.write(new ComposeBuffer(-1, Encoding.ASCII.GetBytes("HTTP/1.1 200 Ok\r\nContent-Type: application/json")));
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: application/json\r\n"
+                + "Content-Length: " + fact.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + fact
+            ));
             conn.write(new ComposeBuffer(fact.Length, fact));
-        } else if(req.Url == "/externapi/garydev/garypic") {
-            Socket gateway = new Socket(conn, 6969, "garybot.dev");
+        } else if(req.Url == "/tos") {
+            string tos = "Terms of service";
 
-            gateway.write(new ComposeBuffer(-1, @"
-                GET /api/gary HTTP/1.1
-                Connection: close
-                X-Luna-Server-As: gateway
-                X-Luna-Server-Codename: arya
-                X-Luna-Server-Version: 0.4.69.4
-                X-Luna-Server-OriginalPort: 6069
+            conn.write(new ComposeBuffer(-1, 
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/plain\r\n"
+                + "Content-Length: " + tos.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + tos
+            ));
+        }  else if(req.Url == "/favicon.ico") {
+            byte[] favicon = File.ReadAllBytes("../../../assets/favicon.ico");
 
-            "));
+            conn.write(new ComposeBuffer(-1, 
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: image/x-icon\r\n"
+                + "Content-Length: " + favicon.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + Encoding.ASCII.GetString(favicon)
+            ));
+        } else if(req.Url == "/pwease_resources/hacks/garypic.qwq") {
+            string script = File.ReadAllText("../../../js/garypic.js");
 
-            // Delay so the server finishes writing to the socket.
-            Thread.Sleep(1000 * 3);
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/javascript\r\n"
+                + "Content-Length" + script.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + script
+            ));
+        } else if(req.Url == "/pwease_resources/hacks/feed.qwq") {
+            string script = File.ReadAllText("../../../js/feed.js");
 
-            ComposeBuffer response = gateway.read(1024*1024*56);
-            if(response.Length < 1) {
-                conn.write(new ComposeBuffer(-1, "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 0\r\n\r\n"));
-                conn.close();
-            } else {
-                conn.write(new ComposeBuffer(-1, "HTTP/1.1 200 Ok\r\nContent-Type: image/jpeg\r\nContent-Length" + response.Length + "\r\n\r\n"));
-                conn.write(response);
-                conn.close();
-            }
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/javascript\r\n"
+                + "Content-Length: " + script.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + script
+            ));
+        } else if(req.Url == "/pwease_resources/static/default-pfp.owo") {
+            byte[] pfp = File.ReadAllBytes("../../../assets/static/default-pfp.png");
 
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: image/png\r\n"
+                + "Content-Length: " + pfp.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + Encoding.ASCII.GetString(pfp)
+            ));
+        } else if(req.Url == "/api") {
+            string html = File.ReadAllText("../../../html/notauthorised.htm");
+
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 401 Unauthorised\r\n"
+                + "Content-Type: text/html\r\n"
+                + "Content-Length:" + html.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + html
+            ));
         } else {
-            conn.write(new ComposeBuffer(-1, "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n"));
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 404 Not Found\r\n"
+                + "Content-Type: text/html\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+            ));
             conn.write(new ComposeBuffer(-1, File.ReadAllText("../../../html/error.htm")));
         }
     }
     public static void Main(string[] args) {
         Socket server = new Socket(6069);
+
 
         while(true) {
             Socket client = new Socket(server);
