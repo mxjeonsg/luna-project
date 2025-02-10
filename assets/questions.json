@@ -1,0 +1,325 @@
+{
+    "questions": [
+        {
+            "question": "Are you an Otaku?",
+            "answer_a": "YES!",
+            "answer_b": "Fuck no",
+            "answer_c": "What's an Otaku?",
+            "ans_a": 5,
+            "ans_b": -5,
+            "ans_c": 0
+        }, {
+            "question": "Are you American?",
+            "answer_a": "Yes",
+            "answer_b": "Fuck no!",
+            "answer_c": "I have no nacionality, I exist beyond borders",
+            "ans_a": -10,
+            "ans_b": 16,
+            "ans_c": 8
+        }, {
+            "question": "Do you blow your nose?",
+            "answer_a": "Yes",
+            "answer_b": "No?",
+            "answer_c": "I sniff it back in",
+            "ans_a": 3,
+            "ans_b": 5,
+            "ans_c": -6
+        }, {
+            "question": "Can you spell \"Banana\" without looking it up?",
+            "answer_a": "Yes",
+            "answer_b": "No",
+            "answer_c": "Banananananananana",
+            "ans_a": 5,
+            "ans_b": -1,
+            "ans_c": 0
+        }, {
+            "question": "What's 2+2?",
+            "answer_a": "4",
+            "answer_b": "22",
+            "answer_c": "Fish",
+            "ans_a": 5,
+            "ans_b": 3,
+            "ans_c": 1
+        }, {
+            "question": "Do you breathe manually now?",
+            "answer_a": "Damn it yeah.",
+            "answer_b": "No, I'm a natural",
+            "answer_c": "Wait, am I?",
+            "ans_a": -2, 
+            "ans_b": 5,
+            "ans_c": 0
+        }, {
+            "question": "How do you eat a Kit-Kat?",
+            "answer_a": "One stick at a time.",
+            "answer_b": "Bite into the whole thing.",
+            "answer_c": "Melt it into a soup.",
+            "ans_a": 5,
+            "ans_b": -2,
+            "ans_c": -20
+        }, {
+            "question": "What's the capital of France",
+            "answer_a": "Paris",
+            "answer_b": "Eiffel Towel",
+            "answer_c": "France shouldn't exist.",
+            "ans_a": 5,
+            "ans_b": 2,
+            "ans_c": 30
+        }, {
+            "question": "Are you a lego block?",
+            "answer_a": "No",
+            "answer_b": "Maybe...",
+            "answer_c": "Click",
+            "ans_a": 5,
+            "ans_b": 0,
+            "ans_c": -10
+        }, {
+            "question": "If you drop soap on the fllow, is the floor clean or the soap dirty?",
+            "answer_a": "Soap is dirty.",
+            "answer_b": "Floor is clean.",
+            "answer_c": "Both are now quantum entangled.",
+            "ans_a": 5,
+            "ans_b": 1,
+            "ans_c": 10
+        }, {
+            "question": "Is water wet?",
+            "answer_a": "Yes?",
+            "answer_b": "Hell nah",
+            "answer_c": "I refuse to participate in this debate.",
+            "ans_a": 5,
+            "ans_b": -5,
+            "ans_c": 10
+        }, {
+            "question": "Are you an NPC?",
+            "answer_a": "No! I have free will!",
+            "answer_b": "Sometimes I just walk into walls.",
+            "answer_c": "ERROR: Dialogue options not available.",
+            "ans_a": -5,
+            "ans_b": 5,
+            "ans_c": 10
+        }, {
+            "question": "Do you code?",
+            "answer_a": "Yes. I write clean and efficient code.",
+            "answer_b": "I copy-paste from Stack Overflow.",
+            "answer_c": "I write HTML and call myself a programmer",
+            "ans_a": 2,
+            "ans_b": 3,
+            "ans_c": 5
+        }, {
+            "question": "What happens when you divide by zero?",
+            "answer_a": "Math explodes.",
+            "answer_b": "The universe resets.",
+            "answer_c": "Error 404",
+            "ans_a": 5,
+            "ans_b": 5,
+            "ans_c": 5
+        }, {
+            "question": "Which of these is an anime?",
+            "answer_a": "Naruto",
+            "answer_b": "SpongeBob SquarePants",
+            "answer_c": "Shrek 2",
+            "ans_a": 5,
+            "ans_b": -5,
+            "ans_c": 2
+        }, {
+            "question": "Have you ever unironically said \"baka\"?",
+            "answer_a": "no",
+            "answer_b": "Maybe once...",
+            "answer_c": "OMG BAKA UwU",
+            "ans_a": 2,
+            "ans_b": 1,
+            "ans_c": -2
+        }, {
+            "question": "What's your stance on pineapple pizza?",
+            "answer_a": "It's good.",
+            "answer_b": "It's an abomination.",
+            "answer_c": "I eat pizza with no toppings, just the crust.",
+            "ans_a": 5,
+            "ans_b": -10,
+            "ans_c": -5
+        }, {
+            "question": "What's the best programming language between these choices for you?",
+            "answer_a": "Python",
+            "answer_b": "JavaScript",
+            "answer_c": "Php",
+            "ans_a": 1,
+            "ans_b": 1,
+            "ans_c": -5
+        }, {
+            "question": "Do you touch grass?",
+            "answer_a": "Yea",
+            "answer_b": "No. I photosynthesize indoors.",
+            "answer_c": "What's grass?",
+            "ans_a": 5,
+            "ans_b": -1,
+            "ans_c": 0
+        }, {
+            "question": "You see a USB drive lying on the ground. You proceed to?",
+            "answer_a": "Leave it alone.",
+            "answer_b": "Plug it into my computer",
+            "answer_c": "Eat it.",
+            "ans_a": 5,
+            "ans_b": -5,
+            "ans_c": 1
+        }, {
+            "question": "Are birds real?",
+            "answer_a": "Yes",
+            "answer_b": "No. They charge on power lines.",
+            "answer_c": "I'm a bird.",
+            "ans_a": 5,
+            "ans_b": 0,
+            "ans_c": 10
+        }, {
+            "question": "What's the best source of news?",
+            "answer_a": "Reuters/BBC (or officialised news outlets)",
+            "answer_b": "Twitter screenshots on Instagram",
+            "answer_c": "Random guy on Reddit with 3 upvotes",
+            "ans_a": 5,
+            "ans_b": -5,
+            "ans_c": -10
+        }, {
+            "question": "How do you end an argument online?",
+            "answer_a": "Provide sources and logical reasoning.",
+            "answer_b": "Spam reaction gifs.",
+            "answer_c": "Just call them a bot.",
+            "ans_a": 10,
+            "ans_b": 5,
+            "ans_c": -5
+        }, {
+            "question": "How do you open a PDF file?"   ,
+            "answer_a": "With a PDF reader.",
+            "answer_b": "By downloading a shady \"PDF Opener.exe\".",
+            "answer_c": "I print it and then scan it back as an image.",
+            "ans_a": 5,
+            "ans_b": -10,
+            "ans_c": -20
+        }, {
+            "question": "Who's the strongest character in anime?",
+            "answer_a": "Goku",
+            "answer_b": "Saitama",
+            "answer_c": "Shaggy at 1% power",
+            "ans_a": 5,
+            "ans_b": 5,
+            "ans_c": 10
+        }, {
+            "question": "If you don't move for a long time, do NPCs think you're AFK?",
+            "answer_a": "No. I'm a human.",
+            "answer_b": "I'm not even sure anymore.",
+            "answer_c": "Wait, they're watching me?",
+            "ans_a": 5,
+            "ans_b": 2,
+            "ans_c": -10
+        }, {
+            "question": "How do you respond to \"ratio\"?",
+            "answer_a": "Ignore it.",
+            "answer_b": "Cry",
+            "answer_c": "Reply \"no u\"",
+            "ans_a": 5,
+            "ans_b": 1,
+            "ans_c": -5
+        }, {
+            "question": "What happens when you drink 5h energy 3 times?",
+            "answer_a": "You get 15h of energy.",
+            "answer_b": "You enter another dimension.",
+            "answer_c": "You turn into The Flash.",
+            "ans_a": -10,
+            "ans_b": 5,
+            "ans_c": 0
+        }, {
+            "question": "What's the most powerful weapon?",
+            "answer_a": "The Tsar bomba",
+            "answer_b": "The Uno Reverse Card",
+            "answer_c": "The Ender Dragon",
+            "ans_a": 5,
+            "ans_b": 10,
+            "ans_c": 5
+        }, {
+            "question": "Where do you store your passwords?",
+            "answer_a": "In a password manager.",
+            "answer_b": "In a .txt file on my desktop.",
+            "answer_c": "In my head. (Which I forget daily)",
+            "ans_a": 5,
+            "ans_b": -10,
+            "ans_c": -5
+        }, {
+            "question": "What's the best way to debug code?",
+            "answer_a": "Check error messages and fix issues.",
+            "answer_b": "Add \"console.log(\"debug\")\" everywhere.",
+            "answer_c": "Sacrifice a rubber duck to the coding gods.",
+            "ans_a": 5,
+            "ans_b": 8,
+            "ans_c": 10
+        }, {
+            "question": "What happens when you delete System32?",
+            "answer_a": "Your PC stops working.",
+            "answer_b": "More FPS in Minecraft.",
+            "answer_c": "Windows installs itself.",
+            "ans_a": 5,
+            "ans_b": 1,
+            "ans_c": 0
+        }, {
+            "question": "Which of these is a valid excuse for being late?",
+            "answer_a": "Traffic",
+            "answer_b": "\"My WiFi was lagging\"",
+            "answer_c": "\"A side quest took longer than expected\"",
+            "ans_a": 5,
+            "ans_b": -1,
+            "ans_c": 1
+        }, {
+            "question": "What's the best way to invest your money?",
+            "answer_a": "Stocks and ETFs.",
+            "answer_b": "All-in on Dogecoin.",
+            "answer_c": "Buying 10 copies of Skyrim.",
+            "ans_a": 5,
+            "ans_b": 5,
+            "ans_c": 10
+        }, {
+            "question": "How do you respond to someone who says \"L + Ratio\"?",
+            "answer_a": "Ignore them",
+            "answer_b": "Reply with \"no u\"",
+            "answer_c": "\"L + Ratio + you fell off + skill issue + cope + L pt. 2\"",
+            "ans_a": 5,
+            "ans_b": 0,
+            "ans_c": 5
+        }, {
+            "question": "What's the best way to gain knowledge?",
+            "answer_a": "Read books",
+            "answer_b": "Watch a 30s TikTok",
+            "answer_c": "Osmosis",
+            "ans_a": 5,
+            "ans_b": -5,
+            "ans_c": 0
+        }, {
+            "question": "How do you solve a problem?",
+            "answer_a": "Analyse it and find a logical solution.",
+            "answer_b": "Google it.",
+            "answer_c": "Turn it off and back on again.",
+            "ans_a": 10,
+            "ans_b": 5,
+            "ans_c": 2
+        }, {
+            "question": "What do you do when your phone falls screen-first?",
+            "answer_a": "Accept my fate. (And cry if needed)",
+            "answer_b": "Pray to the Gorilla Glass gods.",
+            "answer_c": "Scream in slow motion.",
+            "ans_a": 5,
+            "ans_b": 5,
+            "ans_c": 5
+        }, {
+            "question": "Why do people go to the gym?",
+            "answer_a": "To get fit and healthy.",
+            "answer_b": "To flex on Instagram.",
+            "answer_c": "To become the next JoJo character.",
+            "ans_a": 5,
+            "ans_b": 5,
+            "ans_c": 5
+        }, {
+            "question": "What happens when you say \"Bloody Mary\" three times in the mirror?",
+            "answer_a": "Nothing. It's a myth.",
+            "answer_b": "You get jumpscared by yourself.",
+            "answer_c": "She gives you life advice.",
+            "ans_a": 5,
+            "ans_b": -1,
+            "ans": 10
+        }
+    ]
+}
