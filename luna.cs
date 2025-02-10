@@ -11,6 +11,10 @@ static class UwU {
         + "X-Luna-Server-Version: 0.4.69.4\r\n"
         + "X-Luna-Server-OriginalPort: 6069"
     ;
+
+    public static List<ushort> connections;
+    public static bool logged_in = false;
+
     /// <summary>
     ///  This static function makes out the API routing
     ///  of the server at the frontend side.
@@ -18,16 +22,29 @@ static class UwU {
     /// <param name="conn">The client socket instance</param>
     /// <param name="req">The request object</param>
     public static void dispatchContent(Socket conn, HttpRequest req) {
-        if(req.Url == "/" || req.Url == "/home" || req.Url == "/index") {
-            string html = File.ReadAllText("../../../html/feed.htm");
+        if(req.Url == "/feed") {
+            if(!UwU.logged_in) {
+                string html = File.ReadAllText("../../../html/notauthorised.htm");
+
+                conn.write(new ComposeBuffer(-1,
+                    "HTTP/1.1 401 Unauthorised\r\n"
+                    + "Content-Type: text/html\r\n"
+                    + "Content-Length: " + html.Length + "\r\n"
+                    + UwU.headers
+                    + "\r\n\r\n"
+                    + html
+                ));
+            }
+
+            string html2 = File.ReadAllText("../../../html/feed.htm");
 
             conn.write(new ComposeBuffer(-1,
                 "HTTP/1.1 200 Ok\r\n"
                 + "Content-Type: text/html\r\n"
-                + "Content-Length: " + html.Length
+                + "Content-Length: " + html2.Length
                 + UwU.headers
                 + "\r\n\r\n"
-                + html
+                + html2
             ));
         } else if(req.Url == "/pwease_resources/styles/main.uwu") {
             string css = File.ReadAllText("../../../css/main.css");
@@ -122,6 +139,74 @@ static class UwU {
                 + "\r\n\r\n"
                 + Encoding.ASCII.GetString(pfp)
             ));
+        } else if(req.Url == "/") {
+            if(UwU.logged_in) {
+                string html = File.ReadAllText("../../../html/feed.htm");
+
+                conn.write(new ComposeBuffer(-1,
+                    "HTTP/1.1 200 Ok\r\n"
+                    + "Content-Type: text/html\r\n"
+                    + "Content-Length: " + html.Length + "\r\n"
+                    + UwU.headers
+                    + "\r\n\r\n"
+                    + html
+                ));
+            } else {
+                string html = @"
+                    <html>
+                      <head>
+                        <title>Redirect to login... - Luna Project</title>
+                      </head>
+                      <body>
+                        <script>
+                            document.location.href = '/login';
+                        </script>
+                      </body>
+                    </html>
+                ";
+
+                conn.write(new ComposeBuffer(-1,
+                    "HTTP/1.1 302 Found\r\n"
+                    + "Content-Type: text/html\r\n"
+                    + "Content-Length: " + html.Length + "\r\n"
+                    + UwU.headers
+                    + "\r\n\r\n"
+                    + html
+                ));
+            }
+        } else if(req.Url == "/login") {
+            string html = File.ReadAllText("../../../html/login.htm");
+
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/html\r\n"
+                + "Content-Length: " + html.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + html
+            ));
+        } else if(req.Url == "/pwease_resources/hacks/login.qwq") {
+            string js = File.ReadAllText("../../../js/login.js");
+
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/javascript\r\n"
+                + "Content-Length: " + js.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + js
+            ));
+        } else if(req.Url == "/pwease_resources/styles/login.uwu") {
+            string styles = File.ReadAllText("../../../css/login.css");
+
+            conn.write(new ComposeBuffer(-1,
+                "HTTP/1.1 200 Ok\r\n"
+                + "Content-Type: text/css\r\n"
+                + "Content-Length: " + styles.Length + "\r\n"
+                + UwU.headers
+                + "\r\n\r\n"
+                + styles
+            ));
         } else if(req.Url == "/api") {
             string html = File.ReadAllText("../../../html/notauthorised.htm");
 
@@ -146,10 +231,20 @@ static class UwU {
     public static void Main(string[] args) {
         Socket server = new Socket(6069);
 
+        UwU.connections = new List<ushort>(
+            0
+        );
 
         while(true) {
             Socket client = new Socket(server);
             if(!client.Working) continue;
+
+            if(UwU.connections.Contains(client.Port)) {
+                UwU.logged_in = false;
+            } else {
+                UwU.connections.Append(client.Port);
+                UwU.logged_in = false;
+            }
 
             ComposeBuffer recv = client.read(9096);
             if(recv.isEmpty()) {
